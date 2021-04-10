@@ -53,15 +53,16 @@ public class ReleaseController {
 			model.addAttribute("release", rrepository.findById(releaseId));
 			return "redirect:/releases" ;// releases.html
 		}
-	@RequestMapping(value = "/savereview", method = RequestMethod.GET)
+	@RequestMapping(value = "/savereview", method = RequestMethod.POST)
 	public String saveReview(Review review) {
 		rwrepository.save(review);
 		return "release";
 	}
 	
-	@RequestMapping(value= "release/{id}", method = RequestMethod.POST)
-	public String viewRelease(@PathVariable("id") Long releaseId, Model model) {
+	@RequestMapping(value= "/release/{id}", method = RequestMethod.POST)
+	public String viewRelease(@PathVariable("id") Long releaseId, Model model, Review review) {
 		model.addAttribute("release", rrepository.findById(releaseId));
+		model.addAttribute("review", rwrepository.save(review));
 		return "release"; //release.html
 		//miten lisätään arvostelu? 
 		

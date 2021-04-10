@@ -20,12 +20,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-        	.authorizeRequests().antMatchers("/css/**", "/h2-console/**").permitAll() // Enable css when logged out
-			.antMatchers("/signup", "/saveuser", "/h2-console/**").permitAll()
+        	.authorizeRequests().antMatchers("/css/**").permitAll() // Enable css when logged out
+			.antMatchers("/signup", "/saveuser").permitAll()
 			.anyRequest().authenticated()
-			.and()
-			.csrf().disable()
-			.headers().frameOptions().disable()
+//			.and()
+//			.csrf().disable()
+//			.headers().frameOptions().disable()
 			.and()
 		.formLogin()
 			.loginPage("/login")

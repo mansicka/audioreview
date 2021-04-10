@@ -32,7 +32,7 @@ public class Release {
 	@Column(name = "url")
 	private String url;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "release")
 	private List<Review> reviews;
 
 	public Release() {}

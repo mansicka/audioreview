@@ -17,8 +17,8 @@ public class Review {
 	private String comment;
 	private int score;
 	
-
-	
+	@ManyToOne
+	private Release release;
 	
 	public Review() {}
 	

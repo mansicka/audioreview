@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Audio release review app</title>
+</head>
+<body>
+<div class="col-md-4" style="padding:20px 0">
+<h6>Logged in as <i><td th:text="${#httpServletRequest.remoteUser}" /></i></h6>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+		<h1>Releases</h1>
+		<table>
+			<tr>
+				<th>Artist</th>
+				<th>Title</th>
+				<th>Spotify URL</th>
+		</tr>
+		<tr th:each = "release: ${releases}">
+		<td th:text="${release.artist}" />
+		<td> <a th:href="@{/release/{id}(id=${release.id})}"><span th:text="${release.title}"></span></a></td>
+		<td><a th:href="${release.url}" >Url</a></td>
+		<td><a th:href="@{/editrls/{id}(id=${release.id})}" class="btn btn-success">Edit</a></td>   	
+		
+		</table>
+		</div>
+</body>
+</html>
