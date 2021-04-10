@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Audio Review Application</title>
 </head>
 <body>
+<h6>Logged in as <i><td th:text="${#httpServletRequest.remoteUser}" /></i></h6>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
 
+		
 </body>
 </html>

@@ -32,7 +32,7 @@ public class Release {
 	@Column(name = "url")
 	private String url;
 	
-	@OneToMany(mappedBy = "release")
+	@OneToMany(mappedBy = "release", fetch = FetchType.EAGER)
 	private List<Review> reviews;
 
 	public Release() {}

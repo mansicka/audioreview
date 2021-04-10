@@ -59,7 +59,7 @@ public class ReleaseController {
 		return "release";
 	}
 	
-	@RequestMapping(value= "/release/{id}", method = RequestMethod.POST)
+	@RequestMapping(value= "/release/{id}", method = RequestMethod.GET)
 	public String viewRelease(@PathVariable("id") Long releaseId, Model model, Review review) {
 		model.addAttribute("release", rrepository.findById(releaseId));
 		model.addAttribute("review", rwrepository.save(review));
