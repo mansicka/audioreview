@@ -54,6 +54,10 @@ public class AudioReviewApplication {
 			Review rew2 = new Review("Can't go wrong with death metal", 9);
 			Review rew3 = new Review("Classic!", 9);
 			Review rew4 = new Review("Modern metal at its finest", 10);
+			rwrepository.save(rew1);
+			rwrepository.save(rew2);
+			rwrepository.save(rew3);
+			rwrepository.save(rew4);
 			rel1.getReviews().add(rew1);
 			rel2.getReviews().add(rew2);
 			rel3.getReviews().add(rew3);
