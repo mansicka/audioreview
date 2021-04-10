@@ -17,9 +17,7 @@ public class Review {
 	private String comment;
 	private int score;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+
 	
 	
 	public Review() {}

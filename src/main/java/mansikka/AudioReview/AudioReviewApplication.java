@@ -58,10 +58,7 @@ public class AudioReviewApplication {
 			rwrepository.save(rew2);
 			rwrepository.save(rew3);
 			rwrepository.save(rew4);
-			rel1.getReviews().add(rew1);
-			rel2.getReviews().add(rew2);
-			rel3.getReviews().add(rew3);
-			rel4.getReviews().add(rew4);
+			
 			
 			log.info("fetch releases");
 			for (Release release : rrepository.findAll()) {

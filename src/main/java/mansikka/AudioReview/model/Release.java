@@ -32,10 +32,8 @@ public class Release {
 	@Column(name = "url")
 	private String url;
 	
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn( name = "rls_reviews", referencedColumnName = "id")
-	List<Review> reviews = new ArrayList();
+	@OneToMany
+	private List<Review> reviews;
 
 	public Release() {}
 	
