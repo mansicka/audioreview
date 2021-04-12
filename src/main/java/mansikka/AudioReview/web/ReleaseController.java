@@ -59,7 +59,7 @@ public class ReleaseController {
 		return "release";
 	}
 	
-	@RequestMapping(value= "/release/{id}", method = RequestMethod.GET)
+	@RequestMapping(value= "/release/{id}", method = RequestMethod.GET.POST)
 	
 	public String viewRelease(@PathVariable("id") Long releaseId, Optional<Release> release, Model model) {
 		try {
@@ -87,9 +87,13 @@ public class ReleaseController {
 		} catch (Exception e) {
 			return "redirect:/releases";
 		}
+	
 	}
 		//miten lisätään arvostelu? 
-		
+	public String newReview(Model model) {
+		model.addAttribute("review", new Review());
+		return "release"; 
+	}	
 	
 	
 	@RequestMapping(value="/login")
