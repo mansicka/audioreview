@@ -60,12 +60,37 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value= "/release/{id}", method = RequestMethod.GET)
-	public String viewRelease(@PathVariable("id") Long releaseId, Model model) {
-		model.addAttribute("release", rrepository.findById(releaseId));
-		return "release"; //release.html
+	
+	public String viewRelease(@PathVariable("id") Long releaseId, Optional<Release> release, Model model) {
+		try {
+			if (releaseId != 0) {
+				release = rrepository.findById(releaseId);
+
+				if (release.isPresent()) {
+					//get spotify embbed code from url
+					String uri = "https://open.spotify.com/embed/album/" 
+					+ release.get().getUrl().substring(
+					(release.get().getUrl().lastIndexOf("/")+1),
+					(release.get().getUrl().indexOf("?")));
+					//pass attributes to model
+					model.addAttribute("uri", uri);
+					model.addAttribute("id", release.get().getId());
+					model.addAttribute("artist", release.get().getArtist());
+					model.addAttribute("title", release.get().getTitle());
+					model.addAttribute("url", release.get().getUrl());
+					
+					return "release"; //release.html
+				}
+				return "redirect:/releases";
+			}
+			return "redirect:/releases";
+		} catch (Exception e) {
+			return "redirect:/releases";
+		}
+	}
 		//miten lisätään arvostelu? 
 		
-	}
+	
 	
 	@RequestMapping(value="/login")
 	public String login() {	

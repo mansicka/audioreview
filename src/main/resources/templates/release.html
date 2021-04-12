@@ -10,8 +10,12 @@
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
-	<span th:text="${release()" />
-
+		<a th:href="@{/releases}">Back to release list</a>
+		
+	<div th:if="${release}" />
+<td><h3><span th:text="${artist}" /> - <span th:text="${title}" /></h3></td>
+<iframe th:src="${uri}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+	</div>
 		
 </body>
 </html>

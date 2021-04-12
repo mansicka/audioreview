@@ -49,16 +49,6 @@ public class AudioReviewApplication {
 			rrepository.save(rel3);
 			rrepository.save(rel4);
 			
-			log.info("add some reviews");
-			Review rew1 = new Review("Good modern electronic music", 8);
-			Review rew2 = new Review("Can't go wrong with death metal", 9);
-			Review rew3 = new Review("Classic!", 9);
-			Review rew4 = new Review("Modern metal at its finest", 10);
-			rwrepository.save(rew1);
-			rwrepository.save(rew2);
-			rwrepository.save(rew3);
-			rwrepository.save(rew4);
-			
 			
 			log.info("fetch releases");
 			for (Release release : rrepository.findAll()) {
