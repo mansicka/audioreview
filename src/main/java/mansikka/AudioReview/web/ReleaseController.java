@@ -60,9 +60,8 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value= "/release/{id}", method = RequestMethod.GET)
-	public String viewRelease(@PathVariable("id") Long releaseId, Model model, Review review) {
+	public String viewRelease(@PathVariable("id") Long releaseId, Model model) {
 		model.addAttribute("release", rrepository.findById(releaseId));
-		model.addAttribute("review", rwrepository.save(review));
 		return "release"; //release.html
 		//miten lisätään arvostelu? 
 		
