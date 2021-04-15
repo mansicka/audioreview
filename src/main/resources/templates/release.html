@@ -47,12 +47,14 @@
 		<div class="box-row">
 		<div class="box"><h4>Reviews</h4>		
 			</div></div>
-<!-- 			<form th:object="${review}"	 method="post"> 
-<!-- 			<label for="comment">Comment</label> -->
-<!-- 			<input type="text" id="comment" th:field="*{comment}" /> -->
-<!-- 			<label for="rating">Comment</label> -->
-<!-- 			<input type="number" id="rating" th:field="*{rating}" min="1" max="10"/> -->
-<!-- 			<button class="btn btn-success" title="Submit review" type="submit" value="Submit review">Submit review</button> -->
+<form th:object="${review}"	th:action="@{../savereview}" action="#" method="post"> 
+<input type="hidden" id="release_id" th:field="${release.id}" readonly="readonly" />
+<label for="comment">Comment</label> 
+<input type="text" id="comment" th:field="*{comment}" /> 
+<label for="rating">Comment</label> 
+<input type="number" id="score" th:field="*{score}" min="1" max="10"/> 
+<button class="btn btn-success" title="Submit review" type="submit" value="Submit review">Submit review</button> 
+</form>
 <table>
 <tr th:each = "review : ${reviews}">
 <td th:text="${review.comment}"></td>

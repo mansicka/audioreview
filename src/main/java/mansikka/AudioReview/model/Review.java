@@ -28,7 +28,12 @@ public class Review {
 		this.score = score;
 	
 	}
-
+	public Review(String comment, int score, Release release) {
+		super();
+		this.comment = comment;
+		this.score = score;
+		this.release = release;
+	}
 	public String getComment() {
 		return comment;
 	}
