@@ -6,11 +6,14 @@
 <title>Audio release review app</title>
 </head>
 <body>
-<div class="col-md-4" style="padding:20px 0">
+<h1>Audio Review App</h1>
+<div class="col-md-4" style="padding:20px">
 <h6>Logged in as <i><td th:text="${#httpServletRequest.remoteUser}" /></i></h6>
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
+		</div>
+		<div style="margin:auto">
 		<h1>Releases</h1>
 		<table>
 			<tr>
@@ -23,7 +26,7 @@
 		<td> <a th:href="@{/release/{id}(id=${release.id})}"><span th:text="${release.title}"></span></a></td>
 		<td><a th:href="${release.url}" >Url</a></td>
 		<td><a th:href="@{/editrls/{id}(id=${release.id})}" class="btn btn-success">Edit</a></td>   	
-		
+<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleterls/{id}(id=${release.id})}" class="btn btn-danger">Delete</a></td>   		
 		</table>
 		</div>
 </body>

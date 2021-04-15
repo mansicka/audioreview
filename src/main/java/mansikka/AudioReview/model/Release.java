@@ -78,8 +78,10 @@ public class Release {
 	}
 	@Override
 	public String toString() {
-		
-		return "Release: id: " + id + ": " + title + " by " + artist + ", url: " + url  ;
+		for(int i=0; i < reviews.size(); i++) {
+			System.out.println(reviews.get(i));
+		}
+		return "";
 	}
 
 	

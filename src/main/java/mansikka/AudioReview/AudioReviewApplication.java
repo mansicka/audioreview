@@ -2,6 +2,10 @@ package mansikka.AudioReview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -38,16 +42,32 @@ public class AudioReviewApplication {
 			urepository.save(user1);
 			urepository.save(user2);
 			
+			log.info("reviews");
+			Review rev1 = new Review("Good album!", 5);
+			Review rev2 = new Review("Good album!", 10);
+			Review rev3 = new Review("Good album!", 8);
+			Review rev4 = new Review("Good album!", 7);
+			List<Review> reviews = new ArrayList<Review>();
+			reviews.add(rev1);
+			reviews.add(rev2);
+			reviews.add(rev3);
+			reviews.add(rev4);
+			
 			log.info("reset releases");
 			rrepository.deleteAll();
 			Release rel1 = new Release("Sleepnet", "First Light", "https://open.spotify.com/album/6Qv02WJFMwHymSpJoXuuqt?si=BUn4AnC2TOe-02eNO7U2Qw");
+			rel1.setReviews(reviews);
 			Release rel2 = new Release("Revocation", "The Outer Ones", "https://open.spotify.com/album/1Ela7sSi5MIp9HmEuLbCdY?si=Gza2bmeCSKCC6OKtZtjyew");
 			Release rel3 = new Release("Burial", "Untrue", "https://open.spotify.com/album/1C30LhZB9I48LdpVCRRYvq?si=2J7cC8IKQ3Cqwr5SHovj2w");
 			Release rel4 = new Release("Rivers of Nihil", "Where Owls Know My Name", "https://open.spotify.com/album/6Ue1iqByWrHTVFUkTpnm7D?si=AJ-VUpyyR3GERU0SqAJFag");
+			
+			
 			rrepository.save(rel1);
 			rrepository.save(rel2);
 			rrepository.save(rel3);
 			rrepository.save(rel4);
+			
+			
 			
 			
 			log.info("fetch releases");
