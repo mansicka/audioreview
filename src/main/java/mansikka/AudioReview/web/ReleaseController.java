@@ -59,16 +59,16 @@ public class ReleaseController {
 		return "redirect:/releases";// releases.html
 	}
 
-	@RequestMapping(value = "/savereview", method = RequestMethod.POST)
-	public String saveReview(Review review) {
-		System.out.println("save review");
-		reviewrepository.save(review);
-		return "release";
-	}
+	 @RequestMapping(value = "/savereview", method = RequestMethod.POST)
+	    public String saveReview(Review review, Release release) {
+	        System.out.println("save review");
+	        reviewrepository.save(review);
+	        Long id = release.getId();
+	        return "redirect:release/" + id;
+	    }
 
 	@RequestMapping(value = "/release/{id}", method = RequestMethod.GET)
 	public String viewRelease(@PathVariable("id") Long releaseId, Optional<Release> release, Model model) {
-		System.out.println("LLLLLLLLLLLL");
 		System.out.println(releasepository.findAll());
 		Optional<Release> singleRelease = releasepository.findById(releaseId);
 		System.out.println(singleRelease);
