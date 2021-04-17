@@ -56,15 +56,20 @@ public class ReleaseController {
 	@RequestMapping(value = "/editrls/{id}", method = RequestMethod.GET)
 	public String editRelease(@PathVariable("id") Long releaseId, Model model) {
 		model.addAttribute("release", releasepository.findById(releaseId));
-		return "redirect:/releases";// releases.html
+		return "editrelease";// editrelease.html
 	}
 
 	 @RequestMapping(value = "/savereview", method = RequestMethod.POST)
 	    public String saveReview(Review review, Release release) {
-	        System.out.println("save review");
+	        Long releaseId = release.getId();
 	        reviewrepository.save(review);
-	        Long id = release.getId();
-	        return "redirect:release/" + id;
+	        Optional<Release> singleRelease = releasepository.findById(releaseId);
+			List<Review> reviews = singleRelease.get().getReviews();
+			reviews.add(review);
+			System.out.println("Save review, print reviews: " + reviews);
+			release.setReviews(reviews);
+	        System.out.println("save review:" + review.getComment());
+	        return "redirect:release/" + releaseId;
 	    }
 
 	@RequestMapping(value = "/release/{id}", method = RequestMethod.GET)
@@ -72,8 +77,8 @@ public class ReleaseController {
 		System.out.println(releasepository.findAll());
 		Optional<Release> singleRelease = releasepository.findById(releaseId);
 		System.out.println(singleRelease);
-		List<Review> lista = singleRelease.get().getReviews();
-		System.out.println(lista);
+		List<Review> reviewList = singleRelease.get().getReviews();
+		System.out.println(reviewList);
 		if (releaseId != 0) {
 			release = releasepository.findById(releaseId);
 
@@ -87,10 +92,12 @@ public class ReleaseController {
 				model.addAttribute("artist", release.get().getArtist());
 				model.addAttribute("title", release.get().getTitle());
 				model.addAttribute("url", release.get().getUrl());
-				model.addAttribute("reviews", lista);
+				model.addAttribute("reviews", reviewList);
 				model.addAttribute("release", release.get());
+				model.addAttribute("catno", release.get().getCatno());
+				model.addAttribute("description",  release.get().getDescription());
 				model.addAttribute("review", new Review());
-				System.out.println("KKKKKKKKKKKKKKKKKK" + release.get());
+				System.out.println("GET RELEASE: " + release.get());
 				return "release"; // release.html
 			}
 			return "redirect:/releases";
@@ -101,32 +108,6 @@ public class ReleaseController {
 	@RequestMapping(value = "/release/{id}", method = RequestMethod.POST)
 	public String submitReview(@PathVariable("id") Long releaseId, Optional<Review> review, Model model) {
 		System.out.println("aaaaa");
-//		System.out.println(releasepository.findAll());
-//		Optional<Release> singleRelease = releasepository.findById(releaseId);
-//		System.out.println(singleRelease);
-//		List<Review> lista = singleRelease.get().getReviews();
-//		System.out.println(lista);
-//		if (releaseId != 0) {
-//			release = releasepository.findById(releaseId);
-//
-//			if (release.isPresent()) {
-//				// get spotify embbed code from url
-//				String uri = "https://open.spotify.com/embed/album/" + release.get().getUrl().substring(
-//						(release.get().getUrl().lastIndexOf("/") + 1), (release.get().getUrl().indexOf("?")));
-//				// pass attributes to model
-//				model.addAttribute("uri", uri);
-//				model.addAttribute("id", release.get().getId());
-//				model.addAttribute("artist", release.get().getArtist());
-//				model.addAttribute("title", release.get().getTitle());
-//				model.addAttribute("url", release.get().getUrl());
-//				model.addAttribute("reviews", lista);
-//				model.addAttribute("release", release.get());
-//				model.addAttribute("review", new Review());
-//				System.out.println("KKKKKKKKKKKKKKKKKK" + release.get());
-//				return "release"; // release.html
-//			}
-//			return "redirect:/releases";
-//		}
 		return "redirect:/releases";
 	}
 

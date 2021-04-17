@@ -23,20 +23,25 @@ public class Release {
 	private String artist;
 	private String title;
 	private String url;
+	private String catno;
+	private String description;
 	
 	@OneToMany(mappedBy = "release", fetch = FetchType.EAGER)
 	private List<Review> reviews;
 
 	public Release() {}
 	
-	public Release(String artist, String title, String url) {
+	public Release(String artist, String title, String url, String catno, String description) {
 		super();
 		this.artist = artist;
 		this.title = title;
 		this.url = url;
+		this.catno = catno;
+		this.description = description;
 	
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -68,6 +73,22 @@ public class Release {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	public String getCatno() {
+		return catno;
+	}
+
+	public void setCatno(String catno) {
+		this.catno = catno;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String descrption) {
+		this.description = descrption;
+	}
+
 
 	public List<Review> getReviews() {
 		return reviews;

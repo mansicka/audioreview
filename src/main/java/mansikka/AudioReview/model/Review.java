@@ -49,7 +49,15 @@ public class Review {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
 
+	public Release getRelease() {
+		return release;
+	}
+
+	public void setRelease(Release release) {
+		this.release = release;
+	}
 
 	@Override
 	public String toString() {

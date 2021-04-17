@@ -42,13 +42,18 @@
 <div class="boxer">
 	<div class="box-row">
 		<div class="box"><h3><span th:text="${artist}" /> - <span th:text="${title}" /></h3>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<h6>Catalogue number / id: <span th:text="${catno}" /></h6>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<span th:text="${description}"/>
+		<div style="clear: both; display: block; height: 10px;"></div>
 <iframe th:src="${uri}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 	</div></div>
 		<div class="box-row">
 		<div class="box"><h4>Reviews</h4>		
 			</div></div>
 <form th:object="${review}"	th:action="@{../savereview}" action="#" method="post"> 
-<input type="hidden" id="release_id" th:field="${release.id}" readonly="readonly" />
+<input type="hidden" id="review.id" th:field="${release.id}" readonly="readonly" />
 <textarea placeholder="Review this release.." id="comment" th:field="*{comment}" rows:"8" cols="80"/> 
 <div style="clear: both; display: block; height: 10px;"></div>
 <label for="rating">Score</label> 
@@ -66,7 +71,7 @@
 </select>
 <button class="btn btn-success" title="Submit review" type="submit" value="Submit review">Submit review</button> 
 </form>
-<div style="clear: both; display: block; height: 15px;"></div>
+<div style="clear: both; display: block; height: 20px;"></div>
 
 <div th:each = "review : ${reviews}">
 <i><span th:text="${review.comment}"/></i><br>

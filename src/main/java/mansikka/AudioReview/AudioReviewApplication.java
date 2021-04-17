@@ -44,11 +44,10 @@ public class AudioReviewApplication {
 			
 			log.info("reset releases");
 			rrepository.deleteAll();
-			Release rel1 = new Release("Sleepnet", "First Light", "https://open.spotify.com/album/6Qv02WJFMwHymSpJoXuuqt?si=BUn4AnC2TOe-02eNO7U2Qw");
-			Release rel2 = new Release("Revocation", "The Outer Ones", "https://open.spotify.com/album/1Ela7sSi5MIp9HmEuLbCdY?si=Gza2bmeCSKCC6OKtZtjyew");
-			Release rel3 = new Release("Burial", "Untrue", "https://open.spotify.com/album/1C30LhZB9I48LdpVCRRYvq?si=2J7cC8IKQ3Cqwr5SHovj2w");
-			Release rel4 = new Release("Rivers of Nihil", "Where Owls Know My Name", "https://open.spotify.com/album/6Ue1iqByWrHTVFUkTpnm7D?si=AJ-VUpyyR3GERU0SqAJFag");
-			
+			Release rel1 = new Release("Sleepnet", "First Light", "https://open.spotify.com/album/6Qv02WJFMwHymSpJoXuuqt?si=BUn4AnC2TOe-02eNO7U2Qw", "VSN079", "Nik Roos' solo debut");
+			Release rel2 = new Release("Revocation", "The Outer Ones", "https://open.spotify.com/album/1Ela7sSi5MIp9HmEuLbCdY?si=Gza2bmeCSKCC6OKtZtjyew", "3984-15590-2", "The Outer Ones is the seventh studio album by American technical death metal band Revocation, released on September 28, 2018 via Metal Blade.");
+			Release rel3 = new Release("Burial", "Untrue", "https://open.spotify.com/album/1C30LhZB9I48LdpVCRRYvq?si=2J7cC8IKQ3Cqwr5SHovj2w", "HDBCD002", "Untrue is the second studio album by British electronic music producer Burial. Released on 5 November 2007 by Hyperdub, the album was produced by Burial from 2006 to 2007 using the digital audio editing software Sound Forge.");
+			Release rel4 = new Release("Rivers of Nihil", "Where Owls Know My Name", "https://open.spotify.com/album/6Ue1iqByWrHTVFUkTpnm7D?si=AJ-VUpyyR3GERU0SqAJFag", "3984-15575-2", "Where Owls Know My Name is the third studio album by Pennsylvania death metal band Rivers of Nihil. ");
 			
 			rrepository.save(rel1);
 			rrepository.save(rel2);
