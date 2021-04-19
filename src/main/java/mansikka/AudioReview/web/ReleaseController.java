@@ -23,64 +23,60 @@ import mansikka.AudioReview.model.Review;
 @Controller
 public class ReleaseController {
 	@Autowired
-	private ReleaseRepository releasepository;
+	private ReleaseRepository releaserepository;
 
 	@Autowired
 	private ReviewRepository reviewrepository;
 
 	@RequestMapping(value = "/releases", method = RequestMethod.GET)
 	public String getAllReleases(Model model) {
-		model.addAttribute("releases", releasepository.findAll());
+		model.addAttribute("releases", releaserepository.findAll());
 		return "releases"; // releases.html
 	}
 
 	@RequestMapping(value = "/addrelease")
 	public String addRelease(Model model) {
 		model.addAttribute("release", new Release());
-		return "add";// add.html
+		return "newrelease";// newrelease.html
 	}
 
 	@RequestMapping(value = "/saverls", method = RequestMethod.POST)
 	public String saveRelease(Release release) {
-		releasepository.save(release);
+		releaserepository.save(release);
 		return "redirect:/releases";
 	}
 
 	@RequestMapping(value = "/deleterls/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteRelease(@PathVariable("id") Long releaseId, Model model) {
-		releasepository.deleteById(releaseId);
+		releaserepository.deleteById(releaseId);
 		return "redirect:/releases";
 	}
 
 	@RequestMapping(value = "/editrls/{id}", method = RequestMethod.GET)
 	public String editRelease(@PathVariable("id") Long releaseId, Model model) {
-		model.addAttribute("release", releasepository.findById(releaseId));
+		model.addAttribute("release", releaserepository.findById(releaseId));
 		return "editrelease";// editrelease.html
 	}
 
 	 @RequestMapping(value = "/savereview", method = RequestMethod.POST)
 	    public String saveReview(Review review, Release release) {
 	        Long releaseId = release.getId();
+	        review.setRelease(release);
 	        reviewrepository.save(review);
-	        Optional<Release> singleRelease = releasepository.findById(releaseId);
-			List<Review> reviews = singleRelease.get().getReviews();
-			reviews.add(review);
-			System.out.println("Save review, print reviews: " + reviews);
-			release.setReviews(reviews);
 	        System.out.println("save review:" + review.getComment());
 	        return "redirect:release/" + releaseId;
 	    }
 
 	@RequestMapping(value = "/release/{id}", method = RequestMethod.GET)
 	public String viewRelease(@PathVariable("id") Long releaseId, Optional<Release> release, Model model) {
-		System.out.println(releasepository.findAll());
-		Optional<Release> singleRelease = releasepository.findById(releaseId);
+		System.out.println(releaserepository.findAll());
+		Optional<Release> singleRelease = releaserepository.findById(releaseId);
 		System.out.println(singleRelease);
 		List<Review> reviewList = singleRelease.get().getReviews();
 		System.out.println(reviewList);
 		if (releaseId != 0) {
-			release = releasepository.findById(releaseId);
+			release = releaserepository.findById(releaseId);
 
 			if (release.isPresent()) {
 				// get spotify embbed code from url

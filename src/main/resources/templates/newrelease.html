@@ -3,10 +3,10 @@
 <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
 <head>
 <meta charset="UTF-8">
-<title>Audio Review: edit release</title>
+<title>Audio Review: add new release</title>
 </head>
 <body>
-<h1>Edit release</h1>
+<h1>Add new release</h1>
 <div>
 <form th:object="${release}" th:action= "@{../saverls}" action="#" method="post">
 
@@ -28,9 +28,9 @@
 <input type="text" id="catno" th:field="*{catno}" />
 <div style="clear: both; display: block; height: 10px;"></div>
 Description: <br>
-<textarea placeholder="*{description}" id="description" th:field="*{description}" rows:"8" cols="80" maxlenght="255"/>    
+<textarea placeholder="Write a short description, maximum of 255 characters" id="description" th:field="*{description}" rows:"8" cols="80" maxlenght="255"/>    
 <div style="clear: both; display: block; height: 10px;"></div>		
-<Button class="btn btn-success" type="submit" value="Update release">Update release</Button>
+<Button class="btn btn-success" type="submit" value="Save new release">Save new release</Button>
 
 </form>
 </div>
